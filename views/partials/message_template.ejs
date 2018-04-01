@@ -1,9 +1,11 @@
-<div id="messages" class"alert">
+<% if(messages) { %> 
+<div id="messages" class="alert">
     <% Object.keys(messages).forEach(function (type) { %>
-      <ul class="alert-<%= type %>">
+      <div class="alert-<%= msgType2AlertMap[type] %>">
       <% messages[type].forEach(function (message) { %>
-        <li><%= message %></li>
+        <p><%= message %></p><br>
       <% }) %>
-      </ul>
+      </div>
     <% }) %>
 </div>
+<% } %>

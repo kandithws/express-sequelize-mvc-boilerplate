@@ -85,7 +85,11 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  db.sequelize.sync(); // init Sequelize session
+  db.sequelize.sync().then(function() {
+    console.log('Database OK');
+  }).catch(function(err) {
+    console.log(err, "Database Startup Error!")
+  });
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;

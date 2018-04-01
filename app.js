@@ -6,9 +6,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var flash = require('express-flash');
 var session = require('express-session');
+var passport = require('passport');
 var indexRouter = require('./routes/index');
-var quoteRouter = require('./routes/quote');
+var quotesRouter = require('./routes/quotes');
 var usersRouter = require('./routes/users');
+var viewHelper = require('./helpers/view_helper');
 
 var app = express();
 
@@ -23,14 +25,20 @@ app.use(cookieParser('secretgoeshere'));
 app.use(session({ cookie: { maxAge: 60000 },
   resave: false, 
   saveUninitialized: false}));
+
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// ------------------ App Routing ---------------------- 
+// ------------------ App-Resources Routing ---------------------- 
 app.use('/', indexRouter);
-app.use('/quote', quoteRouter);
+app.use('/quotes', quotesRouter);
 
 // app.use('/users', usersRouter);
+// View Helpers
+app.locals.msgType2AlertMap = viewHelper.message_alert_map;
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,12 @@
+<h2>Create Your Quotation</h2>
+<!--
+< include('partial/form', {_quote: quote, action: '/create'}) >
+-->
+
+<form action="/quote/create" method="post">
+    <label for="quote">Enter Author: </label>
+    <input id="author" type="text" name="author_field" value=<%- quote.author %> >
+    <label for="quote">Enter Qutation: </label>
+    <input id="quote" type="text" name="quote_field" value= <%- quote.quote %> >
+    <input type="submit" value="OK">
+</form>

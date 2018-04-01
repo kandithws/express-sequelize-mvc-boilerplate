@@ -4,6 +4,8 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/',  function(req, res, next){
+    req.flash("info", "Hello World!");
+    req.flash("success", "Hello World!");
     res.render('index.ejs', { title: 'Express' }); 
 });
 

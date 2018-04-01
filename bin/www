@@ -85,7 +85,7 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  db.sequelize.sync();
+  db.sequelize.sync(); // init Sequelize session
   var bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;

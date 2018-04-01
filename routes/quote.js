@@ -1,8 +1,7 @@
 var express = require('express');
 var router = express.Router();
-//var Quote  = require('../models/quote');
-var db = require('../models/index');
-var Quote = db.Quote;
+var Quote = require('../models/index').Quote;
+
 // Note: Router, ideally acts similar to a controller
 router.get('/new', function(req, res){
     var q = Quote.build({author: '', quote: ''})
@@ -14,6 +13,7 @@ router.post('/create', function(req, res) {
         quote: req.body.quote}).then(function(q) {
         if(q){
            console.log('Create Quote with id : ' + q.id);
+           req.flash("success", "Succesfully create Quote");
            res.redirect('/');
         }
         

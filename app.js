@@ -7,10 +7,10 @@ var logger = require('morgan');
 var flash = require('express-flash');
 var session = require('express-session');
 var passport = require('passport');
+var viewHelper = require('./helpers/view_helper');
 var indexRouter = require('./routes/index');
 var quotesRouter = require('./routes/quotes');
 var usersRouter = require('./routes/users');
-var viewHelper = require('./helpers/view_helper');
 
 var app = express();
 
@@ -36,6 +36,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/quotes', quotesRouter);
 
+var User = require('./models/index').User;
+//------ Authen Routes ---
+var authRoute = require('./routes/auth.js')(app,passport);
+require('./config/passport/passport.js')(passport,User);
+
 // app.use('/users', usersRouter);
 // View Helpers
 app.locals.msgType2AlertMap = viewHelper.message_alert_map;
@@ -50,7 +55,8 @@ app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-  const env = process.env.NODE_ENV || 'development';
+  // const env = process.env.NODE_ENV || 'development';
+  const env = require('dotenv').load() || 'development';
   res.locals.ENV = env;
   res.locals.ENV_DEVELOPMENT = env == 'development';
   

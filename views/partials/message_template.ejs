@@ -1,11 +1,10 @@
 <% if(messages) { %> 
-<div id="messages" class="alert">
     <% Object.keys(messages).forEach(function (type) { %>
-      <div class="alert-<%= msgType2AlertMap[type] %>">
+      <div class="alert alert-<%= msgType2AlertMap[type] %> alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
       <% messages[type].forEach(function (message) { %>
-        <p><%= message %></p><br>
+        <%- message %>
       <% }) %>
       </div>
     <% }) %>
-</div>
 <% } %>

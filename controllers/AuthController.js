@@ -14,10 +14,11 @@ exports.dashboard = function(req,res){
 
 exports.logout = function(req,res){
     req.session.destroy(function(err) {
-    req.flash('success', 'Logged out Successfully!');
     res.redirect('/');
     });
-  
+
+    
+    res.redirect('/');
 }
 
 // ---------------- Authentication Related Utility Functions (authen session, roles, etc ...) ----------------------

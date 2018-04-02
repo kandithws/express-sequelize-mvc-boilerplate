@@ -2,5 +2,6 @@
 const path = require('path');
 
 module.exports = {
-  'config': path.resolve('config', 'config.json')
+  'config': path.resolve('config', 'config.json') // default
+// 'config': path.resolve('config', 'config_sqlite3.json') // sqlite3
 }

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var quotesController = require('../controllers/QuotesController');
 
-
+// /quotes/
 
 router.get('/new', quotesController.new);
 

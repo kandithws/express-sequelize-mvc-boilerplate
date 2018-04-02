@@ -1,0 +1,18 @@
+{
+  "development": {
+    "dialect": "sqlite",
+    "storage": "./dev-db.sqlite3"
+  },
+  "test": {
+    "dialect": "sqlite",
+    "storage": "./test-db.sqlite3"
+  },
+    "production": {
+      "username": "todo",
+      "password": null,
+      "database": "express_example_production",
+      "host": "127.0.0.1",
+      "dialect": "postgres"
+    }
+  }
+  

@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser('secretgoeshere'));
 app.use(session({ cookie: { maxAge: 60000 },
-  resave: false, 
+  resave: true, 
   saveUninitialized: false}));
 
 app.use(passport.initialize());

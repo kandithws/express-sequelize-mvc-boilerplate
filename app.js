@@ -12,6 +12,12 @@ var indexRouter = require('./routes/index');
 var quotesRouter = require('./routes/quotes');
 var usersRouter = require('./routes/users');
 
+var authentication = require('sequelize-authentication');
+// var restful        = require('sequelize-restful');
+var finale = require('finale-rest')
+var admin          = require('sequelize-admin');
+var db = require('./models/index');
+
 var app = express();
 
 // view engine setup
@@ -44,6 +50,19 @@ require('./config/passport/passport.js')(passport,User);
 // app.use('/users', usersRouter);
 // View Helpers
 app.locals.msgType2AlertMap = viewHelper.message_alert_map;
+
+// Example, Generating Restful api from Sequelize Model.
+finale.initialize({
+  app: app,
+  base: '/api',
+  sequelize: db.sequelize
+});
+
+var quoteResource = finale.resource({
+  model: db.Quote,
+  endpoints: ['/quotes', '/quotes/:id']
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

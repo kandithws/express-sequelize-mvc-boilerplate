@@ -34,3 +34,4 @@ exports.isLoggedIn = function (req, res, next) {
 // https://stackoverflow.com/questions/26895219/verifying-roles-authentication-with-passport-js
 // var role = req.user.role;
 
+

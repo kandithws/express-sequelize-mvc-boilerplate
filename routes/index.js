@@ -14,7 +14,12 @@ router.get('/dashboardtest',  authController.isLoggedIn, function(req, res, next
     res.render('dashboard', { title: 'Express' }); 
 });
 
+router.get('/api', function(req, res, next){
+    // TODO -- list all posible rest api
+});
 
+// Todo Rolebased authorization
+// router.get('/admin/dashboard', [authController.isLoggedIn, authController.isAdmin], function(req,res, next){ .. })
 
 
 
